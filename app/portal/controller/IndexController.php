@@ -63,8 +63,9 @@ class IndexController extends HomeBaseController
         else $ip =$ipr;
         $record = get_locatioin($ip);
         $record['accessTime'] = time();
-        //var_dump($record);
-        M("Iplocation")->add($record);
+        var_dump($record);
+        Db::name('iplocation')->insert($record);
+       
 
         if($record['cityName'] == 'Shanghai')
         {
