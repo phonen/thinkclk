@@ -16,7 +16,7 @@ use think\Route;
 use think\Loader;
 use think\Request;
 use cmf\lib\Storage;
-use IP2Location\IP2Location;
+
 
 // 应用公共文件
 
@@ -1755,6 +1755,7 @@ function cmf_is_open_registration()
 }
 
 function get_locatioin($ip){
+    import('IP2Location.IP2Location', EXTEND_PATH);
     $db = new \IP2Location\Database('./IP-COUNTRY-REGION-CITY-LATITUDE-LONGITUDE-ZIPCODE-TIMEZONE-ISP-DOMAIN-NETSPEED-AREACODE-WEATHER-MOBILE-ELEVATION-USAGETYPE.BIN', \IP2Location\Database::FILE_IO);
 
     $records = $db->lookup($ip, \IP2Location\Database::ALL);
