@@ -64,7 +64,7 @@ class IndexController extends HomeBaseController
 
         $record = get_locatioin($ip);
         var_dump($record);
-        if($record['city'] == 'Shanghai')
+        if($record['cityName'] == 'Shanghai')
         {
 
         }
