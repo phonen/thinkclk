@@ -57,17 +57,25 @@ class IndexController extends HomeBaseController
     }
 
 
-    public function index()
-    {
-        $ip = $_SERVER["REMOTE_ADDR"];
-        //$ipr = $_SERVER["HTTP_X_FORWARDED_FOR"];
-
+    public function checkip(){
+        $ipr = $_SERVER["HTTP_X_FORWARDED_FOR"];
+        if($ipr == "")$ip = $_SERVER["REMOTE_ADDR"];
+        else $ip =$ipr;
         $record = get_locatioin($ip);
-        var_dump($record);
+        $record['accessTime'] = time();
+        //var_dump($record);
+        M("Iplocation")->add($record);
+
         if($record['cityName'] == 'Shanghai')
         {
 
         }
+    }
+
+    public function index()
+    {
+
+
 
     }
 }
