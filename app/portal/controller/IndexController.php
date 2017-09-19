@@ -60,7 +60,7 @@ class IndexController extends HomeBaseController
     public function index()
     {
         $ip = $_SERVER["REMOTE_ADDR"];
-        $ipr = $_SERVER["HTTP_X_FORWARDED_FOR"];
+        //$ipr = $_SERVER["HTTP_X_FORWARDED_FOR"];
 
         $record = get_locatioin($ip);
         var_dump($record);
