@@ -58,14 +58,14 @@ class IndexController extends HomeBaseController
 
 
     public function checkip(){
-        $ipr = $_SERVER["HTTP_X_FORWARDED_FOR"];
+        if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) $ipr = $_SERVER["HTTP_X_FORWARDED_FOR"];
         if($ipr == "")$ip = $_SERVER["REMOTE_ADDR"];
         else $ip =$ipr;
         $record = get_locatioin($ip);
         $record['accessTime'] = time();
         var_dump($record);
         Db::name('iplocation')->insert($record);
-       
+
 
         if($record['cityName'] == 'Shanghai')
         {
