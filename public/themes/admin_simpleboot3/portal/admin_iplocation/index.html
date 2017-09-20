@@ -1,0 +1,63 @@
+<include file="public@header"/>
+</head>
+<body>
+<div class="wrap js-check-wrap">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="{:url('AdminIplocation/index')}">页面管理</a></li>
+        <li><a href="{:url('AdminIplocation/add')}">添加页面</a></li>
+    </ul>
+
+    <form class="js-ajax-form" method="post">
+        <div class="table-actions">
+            <button class="btn btn-danger btn-sm js-ajax-submit" type="submit" data-action="{:url('AdminPage/delete')}"
+                    data-subcheck="true" data-msg="{:lang('DELETE_CONFIRM_MESSAGE')}">{:lang('DELETE')}
+            </button>
+        </div>
+        <table class="table table-hover table-bordered table-list">
+            <thead>
+            <tr>
+                <th width="16">
+                    <label>
+                        <input type="checkbox" class="js-check-all" data-direction="x" data-checklist="js-check-x">
+                    </label>
+                </th>
+                <th width="100">ID</th>
+                <th>IP</th>
+                <th width="80">地区</th>
+                <th width="160">访问时间</th>
+
+            </tr>
+            </thead>
+
+            <foreach name="pages" item="vo">
+                <tr>
+                    <td>
+                        <input type="checkbox" class="js-check" data-yid="js-check-y" data-xid="js-check-x" name="ids[]"
+                               value="{$vo.id}">
+                    </td>
+                    <td>{$vo.id}</td>
+                    <td>
+                        <a href="{:url('portal/page/index',array('id'=>$vo['id']))}" target="_blank">
+                            {$vo.ipAddress}
+                        </a>
+                    </td>
+                    <td>{$vo.regionName}</td>
+                    <td>
+                        {:date('Y-m-d H:i:s',$vo['accessTime'])}
+                    </td>
+                    
+                </tr>
+            </foreach>
+
+        </table>
+        <div class="table-actions">
+            <button class="btn btn-danger btn-sm js-ajax-submit" type="submit" data-action="{:url('AdminPage/delete')}"
+                    data-subcheck="true" data-msg="你确定删除吗？">{:lang('DELETE')}
+            </button>
+        </div>
+        <div class="pagination">{$page}</div>
+    </form>
+</div>
+<script src="__STATIC__/js/admin.js"></script>
+</body>
+</html>
