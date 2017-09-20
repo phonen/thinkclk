@@ -58,10 +58,9 @@ class IndexController extends HomeBaseController
 
 
     public function checkip(){
-        if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) $ipr = $_SERVER["HTTP_X_FORWARDED_FOR"];
-        else $ipr = "";
-        if($ipr == "")$ip = $_SERVER["REMOTE_ADDR"];
-        else $ip =$ipr;
+        if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) $ip = $_SERVER["HTTP_X_FORWARDED_FOR"];
+        else  $ip = $_SERVER["REMOTE_ADDR"];
+
         $record = get_locatioin($ip);
         $record['accessTime'] = time();
         var_dump($record);
