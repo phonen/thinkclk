@@ -10,6 +10,7 @@
 // +----------------------------------------------------------------------
 namespace app\portal\controller;
 
+use app\portal\model\IplocationModel;
 use cmf\controller\HomeBaseController;
 
 class IndexController extends HomeBaseController
@@ -64,7 +65,9 @@ class IndexController extends HomeBaseController
         $record = get_locatioin($ip);
         $record['accessTime'] = time();
         var_dump($record);
-        Db::name('iplocation')->insert($record);
+        $iplocatioin = new IplocationModel();
+        $iplocatioin->insert($record);
+//        Db::name('iplocation')->insert($record);
 
 
         if($record['cityName'] == 'Shanghai')
