@@ -66,7 +66,7 @@ class IndexController extends HomeBaseController
         $record['accessTime'] = time();
         var_dump($record);
         $iplocatioin = new IplocationModel();
-        $iplocatioin->insert($record);
+        $iplocatioin->data($record)->allowField(true)->save();;
 //        Db::name('iplocation')->insert($record);
 
 
