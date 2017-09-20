@@ -3,8 +3,8 @@
 <body>
 <div class="wrap js-check-wrap">
     <ul class="nav nav-tabs">
-        <li class="active"><a href="{:url('AdminIplocation/index')}">页面管理</a></li>
-        <li><a href="{:url('AdminIplocation/add')}">添加页面</a></li>
+        <li class="active"><a href="{:url('AdminIplocation/index')}">IP管理</a></li>
+
     </ul>
 
     <form class="js-ajax-form" method="post">
@@ -22,9 +22,24 @@
                     </label>
                 </th>
                 <th width="100">ID</th>
-                <th>IP</th>
-                <th width="80">地区</th>
-                <th width="160">访问时间</th>
+                <th width="80">IP</th>
+                <th>Location</th>
+                <th width="80">Lattitude&Longitude of city</th>
+                <th width="80">ISP</th>
+                <th width="80">Domain</th>
+                <th width="80">Net Speed</th>
+                <th width="80">IDD & Area Code</th>
+                <th width="80">ZIP Code</th>
+                <th width="80">Weather Station</th>
+                <th width="80">MCC</th>
+                <th width="80">MNC</th>
+                <th width="80">Carrier Name</th>
+                <th width="80">Elevation</th>
+                <th width="80">Usage Type</th>
+                <th width="80">Anonymous Proxy</th>
+                <th width="80">ProxyType</th>
+
+                <th width="160">Local Time</th>
 
             </tr>
             </thead>
@@ -37,24 +52,34 @@
                     </td>
                     <td>{$vo.id}</td>
                     <td>
-                        <a href="{:url('portal/page/index',array('id'=>$vo['id']))}" target="_blank">
+
                             {$vo.ipAddress}
-                        </a>
+
                     </td>
-                    <td>{$vo.regionName}</td>
+                    <td>{$vo.countryName}{$vo.regionName}{$vo.cityName}</td>
+                    <td>{$vo.latitude}--{$vo.longitude}</td>
+                    <td>{$vo.isp}</td>
+                    <td>{$vo.domainName}</td>
+                    <td>{$vo.netSpeed}</td>
+                    <td>{$vo.iddCode}-{$vo.areaCode}</td>
+                    <td>{$vo.zipCode}</td>
+                    <td>{$vo.weatherStationName}</td>
+                    <td>{$vo.mmc}</td>
+                    <td>{$vo.mnc}</td>
+                    <td>{$vo.mobileCarrierName}</td>
+                    <td>{$vo.elevation}</td>
+                    <td>{$vo.usageType}</td>
+                    <td></td>
+                    <td></td>
                     <td>
                         {:date('Y-m-d H:i:s',$vo['accessTime'])}
                     </td>
-                    
+
                 </tr>
             </foreach>
 
         </table>
-        <div class="table-actions">
-            <button class="btn btn-danger btn-sm js-ajax-submit" type="submit" data-action="{:url('AdminPage/delete')}"
-                    data-subcheck="true" data-msg="你确定删除吗？">{:lang('DELETE')}
-            </button>
-        </div>
+        
         <div class="pagination">{$page}</div>
     </form>
 </div>
